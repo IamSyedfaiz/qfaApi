@@ -14,16 +14,13 @@ class IndiamartLeadController extends Controller
     public function getLeadData()
     {
         try {
-            // $apiEndpoint = 'https://mapi.indiamart.com/wservce/crm/crmListing/v2/?glusr_crm_key=mRyzEbts7HrEQfei4XGD7l+IqlTFnzQ=&start_time=01-Jan-202309:00:00&end_time=06-Jan-202313:00:00'; // Replace with the actual API endpoint
-            // Replace with the actual API endpoint
-            $crmKey = 'mRyzEbts7HrEQfei4XGD7l+IqlTFnzQ=';
-            $endTimestamp = Carbon::now()->format('d-M-Y');
+            // $crmKey = 'mRyzEbts7HrEQfei4XGD7l+IqlTFnzQ=';
 
-            // Calculate the start_date by subtracting 365 days from the end_date
-            $startTimestamp = Carbon::now()->subDays(7)->format('d-M-Y');
+            $endTimestamp = Carbon::create(2023, 2, 28)->format('d-M-Y');
+            $startTimestamp = Carbon::create(2023, 2, 28)->subDays(7)->format('d-M-Y');
 
-            $apiEndpoint = "https://mapi.indiamart.com/wservce/crm/crmListing/v2/?glusr_crm_key={$crmKey}&start_time={$startTimestamp}&end_time={$endTimestamp}";
-            // $apiEndpoint = "https://mapi.indiamart.com/wservce/crm/crmListing/v2/?glusr_crm_key={$crmKey}";
+            // $apiEndpoint = "https://mapi.indiamart.com/wservce/crm/crmListing/v2/?glusr_crm_key={$crmKey}&start_time={$startTimestamp}&end_time={$endTimestamp}";
+            $apiEndpoint = "";
 
             logger($apiEndpoint);
 
@@ -59,8 +56,6 @@ class IndiamartLeadController extends Controller
                     'receiver_mobile' => $leadData['RECEIVER_MOBILE'] ?? null,
                 ]);
             }
-            return response()->json($data);
-
             // return response()->json($data);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
