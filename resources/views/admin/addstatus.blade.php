@@ -1,0 +1,110 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            @include('inc.menu')
+            <!-- / Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                @include('inc.nav')
+
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h3 class="card-header">Add status</h3>
+                        <!--Add Leads -->
+                        <div class="row">
+                            <!---Layout -->
+                            <div class="col col-12 col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <form class="row g-3" action="{{ route('admin.store.status') }}" method="post">
+                                            @csrf
+                                            <div class="col-7">
+                                                <label for="name" class="form-label">status name</label>
+                                                <input type="text" name="name" class="form-control"
+                                                    value="{{ @$stat->name }}" id="name">
+                                                <input type="hidden" name="id" value="{{ @$stat->id }}">
+                                            </div>
+
+
+
+                                            <div class="">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / Content -->
+                </div>
+                <!-- Content wrapper -->
+
+
+                <div class="content-wrapper">
+                    <!-- Content -->
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="row">
+                            <div class="d-flex col-12">
+                                <h3 class="card-header">All status</h3>
+                                {{-- <a href="#" class="btn btn-primary my-auto float-end">EXPORT DATA</a> --}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+                        <!-- Basic Bootstrap Table -->
+                        <div class="card shadow p-3 ">
+                            <table id="example" class="table " style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>status Name</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (@$statuses as $index => $status)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $status->name }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.edit.status', ['id' => $status->id]) }}">Edit</a>
+                                                @if (@$stat->id == null)
+                                                    |
+                                                    <a
+                                                        href="{{ route('admin.delete.status', ['id' => $status->id]) }}">Delete</a>
+                                                @endif
+
+                                            </td>
+
+
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <!--/ Basic Bootstrap Table -->
+                    </div>
+                    <!-- / Content -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+@endsection
