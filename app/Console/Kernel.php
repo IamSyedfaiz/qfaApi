@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('certification:send-emails')->dailyAt('9:00');
         $schedule->command('followup:reminder')->dailyAt('9:00');
-        $schedule->command('get-lead-data')->everySixMinutes();
+        $schedule->command('get-lead-data')->everyFiveMinutes();
     }
 
     /**
