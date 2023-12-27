@@ -61,4 +61,19 @@ class IndiamartLeadController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    public function apiLeadView($id)
+    {
+        try {
+            $apiLead = ApiLead::find($id);
+            $attributes = $apiLead->getAttributes();
+            $excludeAttributes = ['id', 'created_at', 'updated_at'];
+            $filteredAttributes = array_diff_key($attributes, array_flip($excludeAttributes));
+
+            return view('admin.viewApiLeads', compact('apiLead', 'filteredAttributes'));
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', $e->getMessage());
+        }
+    }
 }
