@@ -55,6 +55,30 @@ class IndiamartLeadController extends Controller
                     'call_duration' => $leadData['CALL_DURATION'] ?? null,
                     'receiver_mobile' => $leadData['RECEIVER_MOBILE'] ?? null,
                 ]);
+                // ApiLead::create([
+                //     'unique_query_id' => $leadData['UNIQUE_QUERY_ID'] ?? null,
+                //     'query_type' => $leadData['QUERY_TYPE'] ?? null,
+                //     'query_time' => $leadData['QUERY_TIME'] ?? null,
+                //     'sender_name' => $leadData['SENDER_NAME'] ?? null,
+                //     'sender_mobile' => $leadData['SENDER_MOBILE'] ?? null,
+                //     'sender_email' => $leadData['SENDER_EMAIL'] ?? null,
+                //     'subject' => $leadData['SUBJECT'] ?? null,
+                //     'sender_company' => $leadData['SENDER_COMPANY'] ?? null,
+                //     'sender_address' => $leadData['SENDER_ADDRESS'] ?? null,
+                //     'sender_city' => $leadData['SENDER_CITY'] ?? null,
+                //     'sender_state' => $leadData['SENDER_STATE'] ?? null,
+                //     'sender_pincode' => $leadData['SENDER_PINCODE'] ?? null,
+                //     'sender_country_iso' => $leadData['SENDER_COUNTRY_ISO'] ?? null,
+                //     'sender_mobile_alt' => $leadData['SENDER_MOBILE_ALT'] ?? null,
+                //     'sender_phone' => $leadData['SENDER_PHONE'] ?? null,
+                //     'sender_phone_alt' => $leadData['SENDER_PHONE_ALT'] ?? null,
+                //     'sender_email_alt' => $leadData['SENDER_EMAIL_ALT'] ?? null,
+                //     'query_product_name' => $leadData['QUERY_PRODUCT_NAME'] ?? null,
+                //     'query_message' => $leadData['QUERY_MESSAGE'] ?? null,
+                //     'query_mcat_name' => $leadData['QUERY_MCAT_NAME'] ?? null,
+                //     'call_duration' => $leadData['CALL_DURATION'] ?? null,
+                //     'receiver_mobile' => $leadData['RECEIVER_MOBILE'] ?? null,
+                // ]);
             }
             // return response()->json($data);
         } catch (\Exception $e) {

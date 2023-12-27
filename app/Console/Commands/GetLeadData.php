@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\ApiLead;
+use App\Models\Lead;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -34,8 +35,8 @@ class GetLeadData extends Command
         $crmKey = 'mRyzEbts7HrEQfei4XGD7l+IqlTFnzQ=';
 
         // $latestApiLead = ApiLead::latest()->first();
-        $latestApiLead = ApiLead::latest('id')->first();
-        $carbonDate = Carbon::parse($latestApiLead->query_time);
+        $latestApiLead = Lead::latest('id')->first();
+        $carbonDate = Carbon::parse($latestApiLead->date);
         $startTimestamp = $carbonDate->format('d-M-Y');
         $endTimestamp = $carbonDate->addDays(7)->format('d-M-Y');
         logger($latestApiLead);
@@ -53,21 +54,21 @@ class GetLeadData extends Command
         logger($data);
         foreach ($data['RESPONSE'] as $leadData) {
             // Check if the record with the UNIQUE_QUERY_ID already exists
-            $existingLead = ApiLead::where('unique_query_id', $leadData['UNIQUE_QUERY_ID'])->first();
+            $existingLead = Lead::where('unique_query_id', $leadData['UNIQUE_QUERY_ID'])->first();
 
             if (!$existingLead) {
                 // If not, create a new record
-                ApiLead::create([
+                Lead::create([
                     'unique_query_id' => $leadData['UNIQUE_QUERY_ID'] ?? null,
                     'query_type' => $leadData['QUERY_TYPE'] ?? null,
-                    'query_time' => $leadData['QUERY_TIME'] ?? null,
-                    'sender_name' => $leadData['SENDER_NAME'] ?? null,
-                    'sender_mobile' => $leadData['SENDER_MOBILE'] ?? null,
-                    'sender_email' => $leadData['SENDER_EMAIL'] ?? null,
-                    'subject' => $leadData['SUBJECT'] ?? null,
+                    'date' => $leadData['QUERY_TIME'] ?? null,
+                    'name' => $leadData['SENDER_NAME'] ?? null,
+                    'number' => $leadData['SENDER_MOBILE'] ?? null,
+                    'email' => $leadData['SENDER_EMAIL'] ?? null,
+                    'scope_activity' => $leadData['SUBJECT'] ?? null,
                     'sender_company' => $leadData['SENDER_COMPANY'] ?? null,
-                    'sender_address' => $leadData['SENDER_ADDRESS'] ?? null,
-                    'sender_city' => $leadData['SENDER_CITY'] ?? null,
+                    'address' => $leadData['SENDER_ADDRESS'] ?? null,
+                    'city' => $leadData['SENDER_CITY'] ?? null,
                     'sender_state' => $leadData['SENDER_STATE'] ?? null,
                     'sender_pincode' => $leadData['SENDER_PINCODE'] ?? null,
                     'sender_country_iso' => $leadData['SENDER_COUNTRY_ISO'] ?? null,
@@ -76,39 +77,13 @@ class GetLeadData extends Command
                     'sender_phone_alt' => $leadData['SENDER_PHONE_ALT'] ?? null,
                     'sender_email_alt' => $leadData['SENDER_EMAIL_ALT'] ?? null,
                     'query_product_name' => $leadData['QUERY_PRODUCT_NAME'] ?? null,
-                    'query_message' => $leadData['QUERY_MESSAGE'] ?? null,
+                    'comment' => $leadData['QUERY_MESSAGE'] ?? null,
                     'query_mcat_name' => $leadData['QUERY_MCAT_NAME'] ?? null,
                     'call_duration' => $leadData['CALL_DURATION'] ?? null,
                     'receiver_mobile' => $leadData['RECEIVER_MOBILE'] ?? null,
                 ]);
             }
         }
-        // foreach ($data['RESPONSE'] as $leadData) {
-        //     ApiLead::create([
-        //         'unique_query_id' => $leadData['UNIQUE_QUERY_ID'] ?? null,
-        //         'query_type' => $leadData['QUERY_TYPE'] ?? null,
-        //         'query_time' => $leadData['QUERY_TIME'] ?? null,
-        //         'sender_name' => $leadData['SENDER_NAME'] ?? null,
-        //         'sender_mobile' => $leadData['SENDER_MOBILE'] ?? null,
-        //         'sender_email' => $leadData['SENDER_EMAIL'] ?? null,
-        //         'subject' => $leadData['SUBJECT'] ?? null,
-        //         'sender_company' => $leadData['SENDER_COMPANY'] ?? null,
-        //         'sender_address' => $leadData['SENDER_ADDRESS'] ?? null,
-        //         'sender_city' => $leadData['SENDER_CITY'] ?? null,
-        //         'sender_state' => $leadData['SENDER_STATE'] ?? null,
-        //         'sender_pincode' => $leadData['SENDER_PINCODE'] ?? null,
-        //         'sender_country_iso' => $leadData['SENDER_COUNTRY_ISO'] ?? null,
-        //         'sender_mobile_alt' => $leadData['SENDER_MOBILE_ALT'] ?? null,
-        //         'sender_phone' => $leadData['SENDER_PHONE'] ?? null,
-        //         'sender_phone_alt' => $leadData['SENDER_PHONE_ALT'] ?? null,
-        //         'sender_email_alt' => $leadData['SENDER_EMAIL_ALT'] ?? null,
-        //         'query_product_name' => $leadData['QUERY_PRODUCT_NAME'] ?? null,
-        //         'query_message' => $leadData['QUERY_MESSAGE'] ?? null,
-        //         'query_mcat_name' => $leadData['QUERY_MCAT_NAME'] ?? null,
-        //         'call_duration' => $leadData['CALL_DURATION'] ?? null,
-        //         'receiver_mobile' => $leadData['RECEIVER_MOBILE'] ?? null,
-        //     ]);
-        // }
         $this->info('Lead data fetched successfully!');
     }
 }
