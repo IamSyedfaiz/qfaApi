@@ -153,4 +153,5 @@ Route::middleware('auth')->group(function () {
 
     // IndiaMart
     Route::get('/get-lead-data', [IndiamartLeadController::class, 'getLeadData']);
+    Route::get('/apiLead-view/{id}', [IndiamartLeadController::class, 'apiLeadView'])->name('admin.apiLead.view');
 });

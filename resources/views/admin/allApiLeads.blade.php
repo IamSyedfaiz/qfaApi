@@ -33,15 +33,16 @@
                                     <tr>
                                         <th>ID</th>
                                         {{-- <th>Unique Query ID</th> --}}
-                                        {{-- <th>Query Type</th>
-                                        <th>Query Time</th> --}}
+                                        {{-- <th>Query Type</th> --}}
+                                        <th>Query Time</th>
                                         <th>Sender Name</th>
                                         <th>Sender Mobile</th>
                                         <th>Sender Email</th>
                                         <th>Subject</th>
                                         <th>Sender Company</th>
-                                        <th>Sender Address</th>
+                                        {{-- <th>Sender Address</th> --}}
                                         <th>Sender City</th>
+                                        <th>Action</th>
                                         {{-- <th>Sender State</th> --}}
                                         {{-- <th>Sender Pincode</th>
                                         <th>Sender Country ISO</th>
@@ -61,14 +62,14 @@
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
                                             {{-- <td>{{ $lead['unique_query_id'] ?? 'N/A' }}</td> --}}
-                                            {{-- <td>{{ $lead['query_type'] ?? 'N/A' }}</td>
-                                            <td>{{ $lead['query_time'] ?? 'N/A' }}</td> --}}
+                                            {{-- <td>{{ $lead['query_type'] ?? 'N/A' }}</td> --}}
+                                            <td>{{ $lead['query_time'] ?? 'N/A' }}</td>
                                             <td>{{ $lead['sender_name'] ?? '--' }}</td>
                                             <td>{{ $lead['sender_mobile'] ?? '--' }}</td>
                                             <td>{{ $lead['sender_email'] ?? '--' }}</td>
                                             <td>{{ $lead['subject'] ?? '--' }}</td>
                                             <td>{{ $lead['sender_company'] ?? '--' }}</td>
-                                            <td>{{ $lead['sender_address'] ?? '--' }}</td>
+                                            {{-- <td>{{ $lead['sender_address'] ?? '--' }}</td> --}}
                                             <td>{{ $lead['sender_city'] ?? '--' }}</td>
                                             {{-- <td>{{ $lead['sender_state'] ?? 'N/A' }}</td> --}}
                                             {{-- <td>{{ $lead['sender_pincode'] ?? 'N/A' }}</td>
@@ -82,6 +83,9 @@
                                             <td>{{ $lead['query_mcat_name'] ?? 'N/A' }}</td> --}}
                                             {{-- <td>{{ $lead['call_duration'] ?? 'N/A' }}</td> --}}
                                             {{-- <td>{{ $lead['receiver_mobile'] ?? 'N/A' }}</td> --}}
+                                            <td><a href="{{ route('admin.apiLead.view', ['id' => $lead->id]) }}">View</a>
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
