@@ -33,9 +33,9 @@ class GetLeadData extends Command
     {
         $crmKey = 'mRyzEbts7HrEQfei4XGD7l+IqlTFnzQ=';
 
-        $latestApiLead = ApiLead::latest()->first();
+        // $latestApiLead = ApiLead::latest()->first();
+        $latestApiLead = ApiLead::latest('id')->first();
         $carbonDate = Carbon::parse($latestApiLead->query_time);
-
         $startTimestamp = $carbonDate->format('d-M-Y');
         $endTimestamp = $carbonDate->addDays(7)->format('d-M-Y');
         logger($latestApiLead);
