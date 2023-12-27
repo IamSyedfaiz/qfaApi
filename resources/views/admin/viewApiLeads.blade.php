@@ -123,8 +123,22 @@
                                             </div>
                                         </form> --}}
                                         @foreach ($filteredAttributes as $label => $value)
-                                            <span style="font-weight: 700">{{ str_replace('_', ' ', $label) }}</span> :
-                                            {{ $value }}<br>
+                                            @if ($label === 'query_type')
+                                                <span style="font-weight: 700">{{ str_replace('_', ' ', $label) }}</span> :
+                                                @if ($value === 'W')
+                                                    Direct
+                                                @elseif($value === 'P')
+                                                    PNS
+                                                @elseif($value === 'B')
+                                                    Consumed BuyLead
+                                                @else
+                                                    Unknown
+                                                @endif
+                                                <br>
+                                            @else
+                                                <span style="font-weight: 700">{{ str_replace('_', ' ', $label) }}</span> :
+                                                {!! $value !!}<br>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
