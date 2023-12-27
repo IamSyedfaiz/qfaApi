@@ -175,6 +175,9 @@ class AdminController extends Controller
     {
         try {
             $lead = Lead::find($id);
+            $attributes = $lead->getAttributes();
+            $excludeAttributes = ['id', 'created_at', 'updated_at', 'user_id', 'standard_id', 'accreditation_id', 'lead_source_id', 'status_id', 'gst', 'additional_options'];
+            $filteredAttributes = array_diff_key($attributes, array_flip($excludeAttributes));
             $users = User::whereNotNull('parent_id')
                 ->orderBy('created_at', 'desc')
                 ->get();
@@ -186,7 +189,7 @@ class AdminController extends Controller
             $statuses = Status::all();
             $leadSources = LeadSource::all();
             $followUps = FollowUp::where('lead_id', $id)->get();
-            return view('admin.leadView', compact('lead', 'users', 'communications', 'standards', 'accreditations', 'statuses', 'leadSources', 'followUps'));
+            return view('admin.leadView', compact('lead', 'users', 'communications', 'standards', 'accreditations', 'statuses', 'leadSources', 'followUps', 'filteredAttributes'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()

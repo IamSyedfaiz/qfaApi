@@ -38,7 +38,7 @@
                                                 </div>
 
                                                 <div class="col  col-12 col-md-6">
-                                                    <input type="number" class="form-control mb-3"
+                                                    <input type="text" class="form-control mb-3"
                                                         id="basic-default-number" placeholder="Number" name="number"
                                                         value="{{ $lead->number }}" />
                                                 </div>
@@ -73,7 +73,8 @@
                                                         @foreach ($standards as $standard)
                                                             <option value="{{ $standard->id }}"
                                                                 {{ $standard->id == old('standard_id', $lead->standard) ? 'selected' : '' }}>
-                                                                {{ $standard->standard_name }}</option>
+                                                                {{ $standard->standard_name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     @if ($errors->has('standard_id'))
@@ -88,7 +89,8 @@
                                                         @foreach ($accreditations as $accreditation)
                                                             <option value="{{ $accreditation->id }}"
                                                                 {{ $accreditation->id == old('accreditation_id', $lead->accreditation) ? 'selected' : '' }}>
-                                                                {{ $accreditation->accreditation_name }}</option>
+                                                                {{ $accreditation->accreditation_name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     @if ($errors->has('accreditation_id'))
@@ -102,7 +104,8 @@
                                                         @foreach ($statuses as $status)
                                                             <option value="{{ $status->id }}"
                                                                 {{ $status->id == old('status_id', $lead->status_id) ? 'selected' : '' }}>
-                                                                {{ $status->name }}</option>
+                                                                {{ $status->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -113,7 +116,8 @@
                                                         @foreach ($leadSources as $leadSource)
                                                             <option value="{{ $leadSource->id }}"
                                                                 {{ $leadSource->id == old('lead_source_id', $lead->lead_source_id) ? 'selected' : '' }}>
-                                                                {{ $leadSource->name }}</option>
+                                                                {{ $leadSource->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                     @if ($errors->has('lead_source_id'))
@@ -246,6 +250,36 @@
                                     <div class="card-footer">
                                         <a href="{{ route('admin.communication.logs', ['id' => $lead->id]) }}">View
                                             All</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <h5 class="mb-0">Recent Interaction</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        @foreach ($filteredAttributes as $label => $value)
+                                            @if ($label === 'query_type')
+                                                <span style="font-weight: 700">{{ str_replace('_', ' ', $label) }}</span>
+                                                :
+                                                @if ($value === 'W')
+                                                    Direct
+                                                @elseif($value === 'P')
+                                                    PNS
+                                                @elseif($value === 'B')
+                                                    Consumed BuyLead
+                                                @else
+                                                    Unknown
+                                                @endif
+                                                <br>
+                                            @else
+                                                <span style="font-weight: 700">{{ str_replace('_', ' ', $label) }}</span>
+                                                :
+                                                {!! $value !!}<br>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
 
