@@ -128,7 +128,7 @@ class AdminController extends Controller
             } else {
                 $userId = auth()->user()->id;
                 if (auth()->user()->name == 'Admin') {
-                    $leads = Lead::all();
+                    $leads = Lead::orderBy('created_at', 'desc')->get();
                 } else {
                     $leads = Lead::orderBy('created_at', 'desc')
                         ->where('user_id', $userId)
