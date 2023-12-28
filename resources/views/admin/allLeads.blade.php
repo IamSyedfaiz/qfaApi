@@ -34,12 +34,12 @@
                                         <th>ID</th>
                                         <th>Company Name</th>
                                         <th>Date</th>
-                                        <th>Number Of Employees</th>
+                                        <th>Email</th>
                                         <th>Status</th>
                                         <th>Number</th>
                                         <th>State/country</th>
-                                        <th>location</th>
-                                        <th>standard</th>
+                                        {{-- <th>location</th> --}}
+                                        {{-- <th>standard</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -47,14 +47,14 @@
                                     @foreach (@$leads as $index => $lead)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
-                                            <td>{{ $lead->name }}</td>
-                                            <td>{{ $lead->date }}</td>
-                                            <td>{{ $lead->contact_person ?? '--' }}</td>
+                                            <td>{{ $lead->name ?? '--' }}</td>
+                                            <td>{{ $lead->date ?? '--' }}</td>
+                                            <td>{{ $lead->email ?? '--' }}</td>
                                             <td>{{ $lead->status->name ?? '--' }}</td>
-                                            <td>{{ $lead->number }}</td>
-                                            <td>{{ $lead->city }}</td>
-                                            <td>{{ $lead->address }}</td>
-                                            <td>{{ @$lead->standard->standard_name }}</td>
+                                            <td>{{ $lead->number ?? '--' }}</td>
+                                            <td>{{ $lead->city ?? '--' }}</td>
+                                            {{-- <td>{{ $lead->address ?? '--' }}</td> --}}
+                                            {{-- <td>{{ @$lead->standard->standard_name }}</td> --}}
                                             <td><a href="{{ route('admin.lead.view', ['id' => $lead->id]) }}">View</a></td>
 
                                         </tr>
