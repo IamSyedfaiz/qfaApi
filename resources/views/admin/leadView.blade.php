@@ -68,8 +68,7 @@
                                                     <textarea class="form-control mb-3" name="address" id="" cols="30" rows="3" placeholder="Address">{{ $lead->address }}</textarea>
                                                 </div>
                                                 <div class="col col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="standard_id"
-                                                        required>
+                                                    <select class="form-select form-control mb-3" name="standard_id">
                                                         @foreach ($standards as $standard)
                                                             <option value="{{ $standard->id }}"
                                                                 {{ $standard->id == old('standard_id', $lead->standard) ? 'selected' : '' }}>
@@ -84,8 +83,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="accreditation_id"
-                                                        required>
+                                                    <select class="form-select form-control mb-3" name="accreditation_id">
                                                         @foreach ($accreditations as $accreditation)
                                                             <option value="{{ $accreditation->id }}"
                                                                 {{ $accreditation->id == old('accreditation_id', $lead->accreditation) ? 'selected' : '' }}>
@@ -111,8 +109,7 @@
                                                 </div>
 
                                                 <div class="col  col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="lead_source_id"
-                                                        required>
+                                                    <select class="form-select form-control mb-3" name="lead_source_id">
                                                         @foreach ($leadSources as $leadSource)
                                                             <option value="{{ $leadSource->id }}"
                                                                 {{ $leadSource->id == old('lead_source_id', $lead->lead_source_id) ? 'selected' : '' }}>
@@ -129,7 +126,7 @@
                                                 <div class="col  col-12 col-md-6">
                                                     <input type="text" class="form-control mb-3" name="lead_source_text"
                                                         id="basic-default-status" value="{{ $lead->lead_source_text }}"
-                                                        placeholder="Lead Source Text Box" required />
+                                                        placeholder="Lead Source Text Box" />
                                                     @if ($errors->has('lead_source_text'))
                                                         <div class="error text-danger text-sm">
                                                             {{ $errors->first('lead_source_text') }}
@@ -173,7 +170,7 @@
                                                 <div class="col col-12 col-md-6">
                                                     <input type="text" class="form-control mb-3" name="city"
                                                         value="{{ $lead->city }}" id="basic-default-date"
-                                                        placeholder="State/country" required />
+                                                        placeholder="State/country" />
 
                                                     @if ($errors->has('city'))
                                                         <div class="error text-danger text-sm">
