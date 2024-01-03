@@ -29,16 +29,14 @@
                                             <div class="row mb-3">
                                                 <div class="col col-12 col-md-6">
                                                     <input type="text" class="form-control mb-3" id="basic-default-name"
-                                                        placeholder="Name" name="name" required
-                                                        value="{{ old('name') }}" />
+                                                        placeholder="Name" name="name" value="{{ old('name') }}" />
                                                     @error('name')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="col col-12 col-md-6">
                                                     <input type="email" class="form-control mb-3" id="basic-default-email"
-                                                        placeholder="Email" name="email" required
-                                                        value="{{ old('email') }}" />
+                                                        placeholder="Email" name="email" value="{{ old('email') }}" />
                                                     @error('email')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
@@ -47,7 +45,7 @@
                                                 <div class="col  col-12 col-md-6">
                                                     <input type="number" class="form-control mb-3"
                                                         id="basic-default-number" placeholder="Mobile Number" name="number"
-                                                        required value="{{ old('number') }}" />
+                                                        value="{{ old('number') }}" />
                                                     @error('number')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
@@ -55,15 +53,14 @@
                                                 <div class="col  col-12 col-md-6">
                                                     <input type="number" class="form-control mb-3"
                                                         id="basic-default-number" placeholder="Number of employees"
-                                                        name="contact_person" value="{{ old('contact_person') }}"
-                                                        required />
+                                                        name="contact_person" value="{{ old('contact_person') }}" />
                                                     @error('contact_person')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
                                                 <div class="col col-12 col-md-6">
                                                     <select class="form-select form-control mb-3" multiple
-                                                        name="allocate_user[]" required>
+                                                        name="allocate_user[]">
                                                         <option value=""> Select Allocate User</option>
                                                         @foreach ($users as $user)
                                                             <option value="{{ $user->id }}"
@@ -78,8 +75,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="standard_id"
-                                                        required>
+                                                    <select class="form-select form-control mb-3" name="standard_id">
                                                         <option value="">Select Standard</option>
                                                         @foreach ($standards as $standard)
                                                             <option value="{{ $standard->id }}"
@@ -94,8 +90,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="accreditation_id"
-                                                        required>
+                                                    <select class="form-select form-control mb-3" name="accreditation_id">
                                                         <option value="">Select Accreditation</option>
                                                         @foreach ($accreditations as $accreditation)
                                                             <option value="{{ $accreditation->id }}"
@@ -111,8 +106,7 @@
                                                 </div>
 
                                                 <div class="col  col-12 col-md-6">
-                                                    <textarea class="form-control mb-3" id="" cols="10" rows="3" placeholder="Address" required
-                                                        name="address">{{ old('address') }}</textarea>
+                                                    <textarea class="form-control mb-3" id="" cols="10" rows="3" placeholder="Address" name="address">{{ old('address') }}</textarea>
                                                     @if ($errors->has('address'))
                                                         <div class="error text-danger text-sm">
                                                             {{ $errors->first('address') }}
@@ -122,7 +116,7 @@
                                                 <div class="col col-12 col-md-6">
                                                     <input type="text" class="form-control mb-3" name="city"
                                                         value="{{ old('city') }}" id="basic-default-date"
-                                                        placeholder="State/country" required />
+                                                        placeholder="State/country" />
                                                     @if ($errors->has('city'))
                                                         <div class="error text-danger text-sm">
                                                             {{ $errors->first('city') }}
@@ -130,7 +124,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col  col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="status_id" required>
+                                                    <select class="form-select form-control mb-3" name="status_id">
                                                         <option value="">Select Status</option>
 
                                                         @foreach ($statuses as $status)
@@ -150,7 +144,7 @@
                                                 <div class="col col-12 col-md-6">
                                                     <input type="date" class="form-control mb-3" name="date"
                                                         value="{{ old('date') }}" id="basic-default-date"
-                                                        placeholder="Lead Status Text Box" required />
+                                                        placeholder="Lead Status Text Box" />
                                                     @if ($errors->has('date'))
                                                         <div class="error text-danger text-sm">
                                                             {{ $errors->first('date') }}
@@ -159,7 +153,7 @@
                                                 </div>
                                                 <div class="col col-12 col-md-3">
                                                     <select class="form-select form-control mb-3" id="gstSelect"
-                                                        name="gst" required>
+                                                        name="gst">
                                                         <option value="">Select GST</option>
                                                         <option value="w" {{ old('gst') == 'w' ? 'selected' : '' }}>
                                                             With GST</option>
@@ -199,8 +193,7 @@
                                                 <span id="adjustedAmount" class="col col-12 col-md-3"
                                                     style="display: none;"></span>
                                                 <div class="col  col-12 col-md-6">
-                                                    <select class="form-select form-control mb-3" name="lead_source_id"
-                                                        required>
+                                                    <select class="form-select form-control mb-3" name="lead_source_id">
                                                         <option value="">Select Lead Source</option>
                                                         @foreach ($leadSources as $leadSource)
                                                             <option value="{{ $leadSource->id }}"
@@ -217,8 +210,7 @@
                                                 <div class="col  col-12 col-md-6">
                                                     <input type="text" class="form-control mb-3"
                                                         value="{{ old('lead_source_text') }}" name="lead_source_text"
-                                                        id="basic-default-status" placeholder="Lead Source Text Box"
-                                                        required />
+                                                        id="basic-default-status" placeholder="Lead Source Text Box" />
                                                     @if ($errors->has('lead_source_text'))
                                                         <div class="error text-danger text-sm">
                                                             {{ $errors->first('lead_source_text') }}
